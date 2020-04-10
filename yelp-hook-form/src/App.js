@@ -14,7 +14,7 @@ const App = () => {
 
     useEffect(() => {
         YelpFetch();
-    }, [query1])
+    }, [query1, query2])
 
     const updateSearch = e => {
         setSearch(e.target.value);
@@ -35,8 +35,6 @@ const App = () => {
     }
 
     const YelpFetch = async () => {
-
-       console.log('yelpfetched')
             const data = await fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${query1}&location=${query2}&limit=10`, {
                 method: "GET",
                 headers: {
@@ -47,9 +45,7 @@ const App = () => {
             const items = await data.json();
             console.log(items.businesses);
             setItems(items.businesses);
-            console.log('yelpcall', 'q1', query1, 'q2', query2)
-
-        
+            console.log('yelpcall', 'q1:', query1, 'q2:', query2)
         }
     
 
